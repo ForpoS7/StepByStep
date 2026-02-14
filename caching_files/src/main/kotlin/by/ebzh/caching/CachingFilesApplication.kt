@@ -1,6 +1,6 @@
 package by.ebzh.caching
 
-import by.ebzh.caching.decode.FileDecoder
+import by.ebzh.caching.decode.FileEncoder
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
@@ -10,6 +10,6 @@ class CachingFilesApplication
 fun main(args: Array<String>) {
 	runApplication<CachingFilesApplication>(*args)
 
-	val fileDecoder = FileDecoder()
-	fileDecoder.decodeToString()
+//	val fileEncoder = FileEncoder()
+//	fileEncoder.decodeToString()
 }
