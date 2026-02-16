@@ -8,7 +8,11 @@ import org.springframework.stereotype.Service
 class FileService(
     private val fileRepo: FileRepository
 ){
-    fun saveFile(fileModel: FileModel) {
+    fun saveFileModel(fileModel: FileModel) {
         fileRepo.save(fileModel)
+    }
+
+    fun getFileModel(): FileModel{
+        return fileRepo.findById(3).orElseThrow()
     }
 }
