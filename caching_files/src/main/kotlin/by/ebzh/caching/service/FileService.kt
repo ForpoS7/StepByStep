@@ -12,7 +12,7 @@ class FileService(
         fileRepo.save(fileModel)
     }
 
-    fun getFileModel(): FileModel{
-        return fileRepo.findById(3).orElseThrow() // TODO убрать заглушку, добавить функционал рандома какой-нить
+    fun getFileModel(): FileModel?{
+        return fileRepo.getRandomFileModel()
     }
 }
