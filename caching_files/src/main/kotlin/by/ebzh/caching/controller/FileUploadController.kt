@@ -1,5 +1,6 @@
 package by.ebzh.caching.controller
 
+import by.ebzh.caching.exception.SizeLimitException
 import by.ebzh.caching.service.FileService
 import by.ebzh.caching.model.FileModel
 import org.springframework.http.MediaType
@@ -14,6 +15,9 @@ class FileUploadController(
 ) {
     @PostMapping
     fun uploadFile(@RequestParam("file") file: MultipartFile) {
+        if (file.size == 1048576.toLong()) {
+            throw SizeLimitException("File size must be less than 1MB")
+        }
         val fileModel = FileModel(null, file.contentType!!, file.originalFilename!!, file.bytes)
         fileService.saveFileModel(fileModel)
     }
