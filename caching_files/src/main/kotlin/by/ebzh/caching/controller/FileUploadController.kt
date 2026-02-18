@@ -23,8 +23,8 @@ class FileUploadController(
     }
 
     @GetMapping
-    fun getFile(): ResponseEntity<ByteArray> {
-        val fileModel = fileService.getFileModel()
+    fun getFileById(@RequestParam("id") id: Long): ResponseEntity<ByteArray> {
+        val fileModel = fileService.getFileModelById(id)
         if (fileModel != null) {
             return ResponseEntity.ok()
                 .contentType(MediaType.parseMediaType(fileModel.contentType))
