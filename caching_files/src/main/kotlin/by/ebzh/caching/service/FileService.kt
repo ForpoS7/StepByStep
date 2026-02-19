@@ -12,7 +12,8 @@ import java.time.Duration
 @Service
 class FileService(
     private val fileRepo: FileRepository,
-    private val redisTemplate: RedisTemplate<String, FileModel>
+    private val redisTemplate: RedisTemplate<String, FileModel>,
+    private val fileProducer: FileProducer
 ){
     companion object {
         private val log = LoggerFactory.getLogger(FileService::class.java)
@@ -22,6 +23,7 @@ class FileService(
 
     fun saveFileModel(fileModel: FileModel) {
         fileRepo.save(fileModel)
+        fileProducer.sendFile(fileModel)
     }
 
     fun getFileModelById(id: Long): FileModel?{
