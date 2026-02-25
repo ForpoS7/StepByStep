@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class FileListener {
-    @KafkaListener(topics = ["file"], id = "integration",
+    @KafkaListener(topics = ["file"], id = "integration", concurrency = "2",
         properties = ["spring.json.value.default.type=by.ebzh.integration_caching_kafka_practice.message.FileMessage"])
     fun listen(fileMessage: FileMessage) {
         println(fileMessage.toString())
